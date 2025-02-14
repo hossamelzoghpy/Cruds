@@ -1,0 +1,13 @@
+package com.orm.hr.impl;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.orm.hr.entity.Employees;
+@Repository
+public interface EmployeesImpl extends CrudRepository<Employees,Long>{
+	List<Employees> findByNameAndSalary(String name,double salary);
+
+}

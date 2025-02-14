@@ -1,0 +1,35 @@
+package com.jpa.book.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jpa.book.entity.Author;
+import com.jpa.book.repo.AuthorRepo;
+
+@Service
+public class BookService  {
+	@Autowired
+	private AuthorRepo authorRepo;
+	public Author findById(Long id) {
+		return authorRepo.findById(id).orElseThrow();
+	}
+	public List<Author> findAll(){
+		return (List<Author>) authorRepo.findAll();
+	}
+	public Author insert(Author entity) {
+		/*if(entity.getId()!=null) {
+			throw  new RuntimeException();
+		}*/
+		return authorRepo.save(entity);
+	}
+	public Author update(Author entity) {
+		Author author=this.findById(entity.getId());
+		author.setName(entity.getName());
+		return authorRepo.save(author);
+	}
+	public void delete(Long id) {
+		authorRepo.deleteById(id);
+	}
+}

@@ -1,0 +1,5 @@
+package com.jpa.hr.config;
+
+public class AppStartUp {
+
+}

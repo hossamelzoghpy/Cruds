@@ -1,0 +1,8 @@
+package com.jpa.hr.projection;
+
+public class EmployeeProjection {
+	Long getId;
+	String getName;
+	String getSalay;
+
+}

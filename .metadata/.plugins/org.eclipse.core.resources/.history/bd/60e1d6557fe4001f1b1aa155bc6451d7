@@ -1,0 +1,23 @@
+package com.jpa.hr.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jpa.hr.entity.Employee;
+import com.jpa.hr.repo.EmployeeRepo;
+import com.orm.hr.entity.Employees;
+
+@Service
+public class EmployeeService {
+	@Autowired
+	private EmployeeRepo employeeRepo;
+	private long count() {
+		return employeeRepo.count();
+	}
+	public Employee getemployee(long id){
+		return employeeRepo.findById(id).get();
+	}
+	public Employee insertEmployee(Employee employee) {
+		return (Employee) employeeRepo.save(employee);
+	}
+}

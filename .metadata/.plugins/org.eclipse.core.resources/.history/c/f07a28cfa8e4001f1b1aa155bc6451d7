@@ -1,0 +1,47 @@
+package com.jpa.hr.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jpa.hr.entity.Employee;
+import com.jpa.hr.service.EmployeeService;
+
+@RestController
+@RequestMapping("/employee")
+public class EmployeeController {
+	@Autowired
+	private EmployeeService employeeService;
+	@GetMapping("/count")
+	public long count() {
+		return employeeService.getCount();
+	}
+	@GetMapping("/{id}")
+	public Employee getEmployeeById(@PathVariable Long id) {
+		return employeeService.getemployee(id);
+	}
+	@GetMapping("/filter")
+	public List<Employee> getEmployeeByName(@RequestParam String name) {
+		return employeeService.getByName(name);
+	}
+	@PostMapping("/insert")
+	public Long insertEmployee(@RequestBody Employee employee) {
+		return employeeService.insertEmployee(employee).getId();
+	}
+	@PutMapping("/update")
+	public Employee update(@RequestBody Employee emp) {
+		return employeeService.update(emp);
+	}
+	@GetMapping("/department/{id}")
+	public List<Employee> getAllEmployees(@PathVariable Long id){
+		return employeeService.getAllEmployees(id);
+	}
+}

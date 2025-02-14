@@ -1,0 +1,20 @@
+package com.jpa.hr.repo;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.jpa.hr.entity.Employee;
+@Repository
+public interface EmployeeRepo extends CrudRepository<Employee,Long> {
+	List<Employee> findByName(String name);
+	
+	//this is JPQL
+	@Query(value="select emp from Employee emp where emp.name like :empName")
+	List<Employee> filter(@Param("empName") String name);
+	List<Employee> findByDepartmentId(long id);
+	List <Employee> findBySalary(Double salary);
+}

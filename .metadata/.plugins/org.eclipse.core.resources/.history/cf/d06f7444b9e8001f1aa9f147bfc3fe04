@@ -1,0 +1,5 @@
+package com.jpa.book.base;
+
+public interface BaseRepo {
+
+}

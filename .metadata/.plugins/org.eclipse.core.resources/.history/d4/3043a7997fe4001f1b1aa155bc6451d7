@@ -1,0 +1,16 @@
+package com.jpa.hr.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jpa.hr.service.EmployeeService;
+
+@RestController
+@RequestMapping("/api/employee")
+public class EmployeeController {
+	private EmployeeService emp;
+	
+	public int count() {
+		return emp.
+	}
+}

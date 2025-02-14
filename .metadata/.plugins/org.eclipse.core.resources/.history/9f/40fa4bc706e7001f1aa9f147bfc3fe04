@@ -1,0 +1,26 @@
+package com.jpa.hr.repo;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.jpa.hr.entity.Employee;
+import com.jpa.hr.projection.EmployeeProjection;
+@Repository
+public interface EmployeeRepo extends CrudRepository<Employee,Long> {
+	List<Employee> findByName(String name);
+	List <Employee> findBySalary(Double salary);
+	//this is JPQL
+	@Query(value="select emp from #{#entityName} emp where(:empName is null or emp.name like :empName)")
+	Page<EmployeeProjection> filter(@Param("empName") String name,Pageable pageable);
+	List<Employee> findByDepartmentId(long id);
+	@Query(value="select * from employee ",nativeQuery=true)
+	List<EmployeeProjection> allProjection();
+	
+}

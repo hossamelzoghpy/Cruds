@@ -1,0 +1,9 @@
+package com.jpa.book.base;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BaseRepo<T extends BaseEntity<ID>,ID extends Number> extends JpaRepository<T,ID> {
+	
+	void updateEntity(ID id,String statusCode);
+
+}

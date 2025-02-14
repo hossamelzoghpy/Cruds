@@ -1,0 +1,42 @@
+package com.jpa.hr.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jpa.hr.entity.Department;
+import com.jpa.hr.entity.user;
+import com.jpa.hr.repo.UserRepo;
+import com.jpa.hr.repo.userRepo;
+
+@Service
+public class UserService {
+	@Autowired
+	private UserRepo userRepo;
+	public long getCount() {
+		return userRepo.count();
+	}
+	public user getuser(Long id){
+		return userRepo.findById(id).orElseThrow();
+	}
+	public List<user> getAllusers(){
+		return (List<user>) userRepo.findAll();
+	}
+	public user insertuser(user user) {
+		return userRepo.save(user);
+	}
+	public List<user> getByName(String name) {
+		return userRepo.filter(name);
+	}
+	public user update(user emp) {
+		user current=userRepo.findById(emp.getId()).orElseThrow();
+		current.setName(emp.getName());
+		current.setDepartment(emp.getDepartment());
+		current.setSalary(emp.getSalary());
+		return userRepo.save(current);
+	}
+	public List<user> getAllusersByDepartment(Long id){
+		return userRepo.findByDepartmentId(id);
+	}
+}

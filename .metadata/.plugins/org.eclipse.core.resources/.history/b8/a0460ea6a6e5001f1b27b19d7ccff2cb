@@ -1,0 +1,47 @@
+package com.jpa.hr.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jpa.hr.entity.Department;
+import com.jpa.hr.entity.Employee;
+import com.jpa.hr.repo.EmployeeRepo;
+
+@Service
+public class EmployeeService {
+	@Autowired
+	private EmployeeRepo employeeRepo;
+	
+	@Autowired
+	private DepartmentService departmentService;
+	public long getCount() {
+		return employeeRepo.count();
+	}
+	public Employee getemployee(Long id){
+		return employeeRepo.findById(id).orElseThrow();
+	}
+	public List<Employee> getAllEmployees(){
+		return (List<Employee>) employeeRepo.findAll();
+	}
+	public Employee insertEmployee(Employee employee) {
+		if(employee.getDepartment() != null&& employee.getDepartment().getId()!=null) {
+			
+		}
+		return employeeRepo.save(employee);
+	}
+	public List<Employee> getByName(String name) {
+		return employeeRepo.filter(name);
+	}
+	public Employee update(Employee emp) {
+		Employee current=employeeRepo.findById(emp.getId()).orElseThrow();
+		current.setName(emp.getName());
+		current.setDepartment(emp.getDepartment());
+		current.setSalary(emp.getSalary());
+		return employeeRepo.save(current);
+	}
+	public List<Employee> getAllEmployeesByDepartment(Long id){
+		return employeeRepo.findByDepartmentId(id);
+	}
+}

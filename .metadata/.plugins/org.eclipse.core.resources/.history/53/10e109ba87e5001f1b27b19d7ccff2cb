@@ -1,0 +1,44 @@
+package com.jpa.hr.config;
+
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+
+import com.jpa.hr.entity.Role;
+import com.jpa.hr.entity.User;
+import com.jpa.hr.service.RoleService;
+import com.jpa.hr.service.UserService;
+
+public class AppStartUp implements CommandLineRunner {
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private RoleService roleService;
+	
+	@Override
+	public void run(String... args) throws Exception {
+		//Create Role
+		Role role1=new Role();
+		role1.setName("Admin");
+		roleService.insertRole(role1);
+		/////////////////////////////
+		Role role2=new Role();
+		role2.setName("User");
+		roleService.insertRole(role2);
+		
+		//Create User
+		User user1=new User();
+		user1.setUserName("admin");
+		user1.setPassword("admin");
+		user1.setRoles((Set<Role>) role1);
+		userService.insertUser(user1);
+		///////////////////////////////
+		User user2=new User();
+		user2.setUserName("user");
+		user2.setPassword("user");
+		user2.setRoles((Set<Role>) role2);
+		userService.insertUser(user2);
+	}
+
+}

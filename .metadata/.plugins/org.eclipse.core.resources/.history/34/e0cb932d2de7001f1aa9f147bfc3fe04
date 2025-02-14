@@ -1,0 +1,16 @@
+package com.jpa.book.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jpa.book.entity.Author;
+import com.jpa.book.repo.AuthorRepo;
+
+@Service
+public class AuthorService {
+	@Autowired
+	private AuthorRepo autorRepo;
+	public Author findById(Long id) {
+		return 
+	}
+}

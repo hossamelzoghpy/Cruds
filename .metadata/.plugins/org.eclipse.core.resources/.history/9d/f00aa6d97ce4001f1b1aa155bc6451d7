@@ -1,5 +1,0 @@
-package com.orm.hr.repo;
-
-public interface EmployeeRepo {
-
-}

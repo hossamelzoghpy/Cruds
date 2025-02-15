@@ -1,0 +1,14 @@
+package com.jpa.book.error;
+
+public class CustomRuntimeException extends RuntimeException{
+
+	public CustomRuntimeException() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public CustomRuntimeException(String message) {
+		super(message);
+	}
+
+}

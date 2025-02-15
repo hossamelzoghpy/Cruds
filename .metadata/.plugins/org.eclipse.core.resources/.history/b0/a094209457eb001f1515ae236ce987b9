@@ -1,0 +1,35 @@
+package com.jpa.book.error;
+
+import java.util.Arrays;
+import java.util.Map;
+
+import org.springframework.boot.web.error.ErrorAttributeOptions;
+import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@Component
+public class CustomError extends DefaultErrorAttributes {
+
+
+	@Override
+	public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
+		Map<String,Object> errorAttributes=super.getErrorAttributes(webRequest, options);
+		errorAttributes.put("locale",webRequest.getLocale().toString());
+		errorAttributes.put("success", Boolean.FALSE);
+		errorAttributes.put("statu",errorAttributes.get("error"));
+		errorAttributes.put("exception", errorAttributes.get("message"));
+		errorAttributes.put("details", Arrays.asList(errorAttributes.get("message")));
+		errorAttributes.remove("error");
+		errorAttributes.remove("path");
+		errorAttributes.remove("trace");
+		errorAttributes.remove("timestamp");
+		return errorAttributes;
+	}
+
+	
+}

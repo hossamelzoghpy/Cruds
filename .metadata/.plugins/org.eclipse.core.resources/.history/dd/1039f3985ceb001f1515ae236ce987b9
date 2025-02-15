@@ -1,0 +1,45 @@
+package com.jpa.book.base;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jpa.book.entity.Author;
+import com.jpa.book.error.CustomRuntimeException;
+
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public class BaseService<T extends BaseEntity<ID>,ID extends Number> {
+	@Autowired
+	private BaseRepo<T,ID> baseRepo;
+	public T findById(ID id) {
+		Optional<T> entity=baseRepo.findById(id);
+		if(entity.isPresent()) {
+			return entity.get();
+		}
+		else {
+			throw new CustomRuntimeException("The record of id equal "+id+" Not Found");
+		}
+	}
+	public T getById(ID id) {
+		return baseRepo.getById(id);
+	}
+	public List<T> findAll(){
+		return (List<T>)baseRepo.findAll();
+	}
+	public T insert(T entity) {
+		/*if(entity.getId()!=null) {
+			throw  new RuntimeException();
+		}*/
+		return baseRepo.save(entity);
+	}
+	public T update(T entity) {
+		
+		return baseRepo.save(entity);
+	}
+	public void delete(ID id) {
+		baseRepo.deleteById(id);
+	}
+}

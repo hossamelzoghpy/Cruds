@@ -24,10 +24,9 @@ import jakarta.validation.constraints.Pattern;
 public class Author extends BaseEntity<Long>{
 	@NotNull
 	private String name;
-	@Pattern(regexp = "^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$")
+	@Pattern(regexp = "^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$",message="{validation.constraints.ip-address.message}")
 	private String ipAddress;
-	@Email
-	@NotNull
+	@Email(message="{validation.constraints.email.message}")
 	private String email;
 	@Formula("(select count(*) from book books where books.author_id = id)")
 	private Long countBook;

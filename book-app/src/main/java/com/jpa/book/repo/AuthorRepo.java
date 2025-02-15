@@ -1,10 +1,14 @@
 package com.jpa.book.repo;
 
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.jpa.book.base.BaseRepo;
 import com.jpa.book.entity.Author;
 @Repository
-public interface AuthorRepo extends  BaseRepo<Author,Long>{
+public interface AuthorRepo extends  BaseRepo<Author,Long> ,JpaSpecificationExecutor<Author>{
+	Optional<Author> findByEmail(String email);
 }

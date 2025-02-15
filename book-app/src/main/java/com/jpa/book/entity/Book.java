@@ -31,7 +31,8 @@ public class Book extends BaseEntity<Long> {
 	@Transient  //not adding to db
 	private Double discount;
 	/*the fetch type must be eager but suppose that i need the fetch be lazy so i need to using entity graph or load graph 
-	or using DTO(like propagation) to determine what i need to show from entity to losscoupled queries for methods that using join to connect to other entity why?
+	or using DTO(like propagation) to determine what i need to show from entity to losscoupled queries 
+	for methods that using join to connect to other entity why?
 	to reduce the number of queries and avoid the problem of n+1 of jpa*/
 	
 	@JsonBackReference  //To Avoid seralization by jackson

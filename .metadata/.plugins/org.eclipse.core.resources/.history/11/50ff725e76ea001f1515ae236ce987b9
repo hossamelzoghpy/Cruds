@@ -1,0 +1,5 @@
+package com.jpa.book.repo;
+
+public class AuthorSpec {
+
+}

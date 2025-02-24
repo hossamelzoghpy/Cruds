@@ -24,7 +24,7 @@ class BookAppApplicationTests {
 //		this.authorService = authorService;
 //	}
 
-	
+	//test on find by email integration test
 	@Test
 	void emailNotFoundTest() {
 		Optional<Author> author=authorService.findByEmail("hoss@gmail.com");

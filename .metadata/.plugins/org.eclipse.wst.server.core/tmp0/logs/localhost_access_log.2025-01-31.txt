@@ -1,7 +1,0 @@
-127.0.0.1 - - [31/Jan/2025:23:41:34 +0200] "GET / HTTP/1.1" 404 752
-0:0:0:0:0:0:0:1 - - [31/Jan/2025:23:42:18 +0200] "GET /FirstApp/FirstServlet HTTP/1.1" 200 48
-0:0:0:0:0:0:0:1 - - [31/Jan/2025:23:42:21 +0200] "GET /favicon.ico HTTP/1.1" 404 763
-127.0.0.1 - - [31/Jan/2025:23:44:24 +0200] "GET / HTTP/1.1" 404 752
-0:0:0:0:0:0:0:1 - - [31/Jan/2025:23:44:25 +0200] "GET /FirstApp/FirstServlet HTTP/1.1" 200 45
-0:0:0:0:0:0:0:1 - - [31/Jan/2025:23:44:34 +0200] "GET /FirstApp/FirstServlet?name=hossam HTTP/1.1" 200 47
-0:0:0:0:0:0:0:1 - - [31/Jan/2025:23:44:39 +0200] "GET /FirstApp/FirstServlet?name=hos HTTP/1.1" 200 44

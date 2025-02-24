@@ -1,17 +1,25 @@
 package com.jpa.book.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 //Java based config
 @Configuration
 @EnableJpaAuditing(auditorAwareRef="auditorAware")
+@EnableScheduling
+@ConditionalOnProperty(name="scheduler.enabled",matchIfMissing=true)
+@EnableAsync
+@EnableAspectJAutoProxy()
 public class WebConfig implements WebMvcConfigurer {
 	@Bean
 	public AuditorAware<String> auditorAware(){

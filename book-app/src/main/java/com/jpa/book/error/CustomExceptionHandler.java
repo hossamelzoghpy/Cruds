@@ -26,4 +26,18 @@ public class CustomExceptionHandler {
 				.status(HttpStatus.CONFLICT)
 				.body(error);
 	}
+	@ExceptionHandler(InterruptedException.class)
+	public ResponseEntity<?>scheduledHandling(InterruptedException ex){
+		ErrorResponse error=new ErrorResponse(ex.getLocalizedMessage(),Arrays.asList(ex.getMessage()));
+		return ResponseEntity
+				.status(HttpStatus.CONFLICT)
+				.body(error);
+	}
+	@ExceptionHandler(FileStorageException.class)
+	public ResponseEntity<?>fileStorageHandling(FileStorageException ex){
+		ErrorResponse error=new ErrorResponse(ex.getLocalizedMessage(),Arrays.asList(ex.getMessage()));
+		return ResponseEntity
+				.status(HttpStatus.CONFLICT)
+				.body(error);
+	}
 }

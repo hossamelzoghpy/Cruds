@@ -18,9 +18,17 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="author")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Author extends BaseEntity<Long>{
 	@NotNull
 	private String name;
@@ -33,7 +41,7 @@ public class Author extends BaseEntity<Long>{
 	@JsonManagedReference    ///to avoid infintiy loop when show author
 	@OneToMany(mappedBy="author")
 	private Set<Book> books=new HashSet<>();
-	
+	private String imagePath;
 	//Function Helper
 	public void addBook(Book book) {
 		books.add(book);
@@ -41,36 +49,15 @@ public class Author extends BaseEntity<Long>{
 	public void removeBook(Book book) {
 		books.remove(book);
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
+	public Author(Long id,@NotNull String name,
+			@Pattern(regexp = "^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$", message = "{validation.constraints.ip-address.message}") String ipAddress,
+			@Email(message = "{validation.constraints.email.message}") String email) {
+		super();
 		this.name = name;
-	}
-	public Long getCountBook() {
-		return countBook;
-	}
-	public void setCountBook(Long countBook) {
-		this.countBook = countBook;
-	}
-	public String getIpAddress() {
-		return ipAddress;
-	}
-	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Set<Book> getBooks() {
-		return books;
-	}
-	public void setBooks(Set<Book> books) {
-		this.books = books;
-	}
+	
 
 	
 

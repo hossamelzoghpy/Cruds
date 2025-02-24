@@ -18,9 +18,13 @@ import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="book")
+@Setter
+@Getter
 public class Book extends BaseEntity<Long> {
 	@NotNull(message="Should enter name")
 	private String name;
@@ -40,24 +44,7 @@ public class Book extends BaseEntity<Long> {
 	@JoinColumn(name="author_id")
 	private Author author;
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Double getPrice() {
-		return price;
-	}
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-	public Author getAuthor() {
-		return author;
-	}
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
+	
 	public Double getDiscount() {
 		return discount;
 	}

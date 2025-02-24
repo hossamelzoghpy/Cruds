@@ -3,15 +3,21 @@ package com.jpa.book.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ErrorResponse {
 	private Boolean status;
 	private String message;
 	private LocalDateTime time;
 	private List<String> details;
-	public ErrorResponse() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	public ErrorResponse(String message, List<String> details) {
 		super();
 		this.message = message;
@@ -19,29 +25,6 @@ public class ErrorResponse {
 		this.status=Boolean.FALSE;
 		this.time=LocalDateTime.now();
 	}
-	public Boolean getStatus() {
-		return status;
-	}
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public LocalDateTime getTime() {
-		return time;
-	}
-	public void setTime(LocalDateTime time) {
-		this.time = time;
-	}
-	public List<String> getDetails() {
-		return details;
-	}
-	public void setDetails(List<String> details) {
-		this.details = details;
-	}
+	
 	
 }

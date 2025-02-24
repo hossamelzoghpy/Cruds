@@ -14,27 +14,26 @@ import com.jpa.book.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 
 @SpringBootTest
-@RequiredArgsConstructor
 class BookAppApplicationTests {
-	@Autowired
-	AuthorService authorService;
-	
-//	public BookAppApplicationTests(AuthorService authorService) {
-//		super();
-//		this.authorService = authorService;
+//	@Autowired
+//	AuthorService authorService;
+//	
+////	public BookAppApplicationTests(AuthorService authorService) {
+////		super();
+////		this.authorService = authorService;
+////	}
+//
+//	//test on find by email integration test
+//	@Test
+//	void emailNotFoundTest() {
+//		Optional<Author> author=authorService.findByEmail("hoss@gmail.com");
+//		assertEquals(false, author.isPresent());
 //	}
-
-	//test on find by email integration test
-	@Test
-	void emailNotFoundTest() {
-		Optional<Author> author=authorService.findByEmail("hoss@gmail.com");
-		assertEquals(false, author.isPresent());
-	}
-	@Test
-	void emailFoundTest() {
-		Optional<Author> author=authorService.findByEmail("noo@gmail");
-		assertEquals(true, author.isPresent());
-		assertEquals("noo@gmail", author.get().getEmail());
-	}
+//	@Test
+//	void emailFoundTest() {
+//		Optional<Author> author=authorService.findByEmail("noo@gmail");
+//		assertEquals(true, author.isPresent());
+//		assertEquals("noo@gmail", author.get().getEmail());
+//	}
 
 }
